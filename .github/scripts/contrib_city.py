@@ -26,7 +26,7 @@ THEMES = {
                   green="#1a7f37", ground="#d0d7de",
                   ramp=["#ebedf0", "#e2d6fb", "#c3a6f5", "#9a6ee8", "#8250df"]),
 }
-LOOP, FADE_AT = 20, 18.5  # seconds: one build-hold-fade cycle, and when the fade starts
+LOOP, FADE_AT = 12, 10.8  # seconds: one build-hold-fade cycle, and when the fade starts
 LEVELS = {"NONE": 0, "FIRST_QUARTILE": 1, "SECOND_QUARTILE": 2, "THIRD_QUARTILE": 3, "FOURTH_QUARTILE": 4}
 
 QUERY = """query($login: String!) { user(login: $login) { contributionsCollection { contributionCalendar {
