@@ -21,7 +21,7 @@ FONT = "ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monosp
 THEMES = {
     "dark": dict(bg="#0d1117", border="#30363d", bar="#161b22", muted="#8b949e", text="#e6edf3",
                  green="#7ee787", ground="#30363d",
-                 ramp=["#161b22", "#3b2a5c", "#5a3d8f", "#8957e5", "#d2a8ff"]),
+                 ramp=["#161b22", "#5b3a9e", "#7449cc", "#9a6cf0", "#d2a8ff"]),
     "light": dict(bg="#ffffff", border="#d0d7de", bar="#f6f8fa", muted="#57606a", text="#1f2328",
                   green="#1a7f37", ground="#d0d7de",
                   ramp=["#ebedf0", "#e2d6fb", "#c3a6f5", "#9a6ee8", "#8250df"]),
@@ -98,15 +98,21 @@ def render(theme, total, weeks):
     tiles = [(w + r, w, r, n, lv) for w, wk in enumerate(weeks) for r, n, lv in wk]
     for _, w, r, n, lv in sorted(tiles):      # back to front, so nearer towers cover farther ones
         top = c["ramp"][lv] if lv else c["ground"]
-        bh = 2 + (min(n, cap) / cap * 70 if n else 0)
+        # square-root scale: quiet days still get a visible tower, busy days don't dwarf everything
+        bh = 2 + (8 + 62 * math.sqrt(min(n, cap) / cap) if n else 0)
         x, y = ox + (w - r) * s, oy + (w + r) * s * 0.5
+        delay = 0.3 + (w - r + 6) * 0.035  # screen left -> right
         p.append(
+            f'<g opacity="0" transform="translate(0 -24)">'
+            f'<animate attributeName="opacity" from="0" to="1" dur="0.45s" begin="{delay:.3f}s" fill="freeze"/>'
+            f'<animateTransform attributeName="transform" type="translate" from="0 -24" to="0 0" dur="0.45s" '
+            f'begin="{delay:.3f}s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.2 0.8 0.2 1"/>'
             f'<polygon points="{x - s:.1f},{y + s / 2 - bh:.1f} {x:.1f},{y + s - bh:.1f} {x:.1f},{y + s:.1f} '
             f'{x - s:.1f},{y + s / 2:.1f}" fill="{shade(top, 0.7)}"/>'
             f'<polygon points="{x + s:.1f},{y + s / 2 - bh:.1f} {x:.1f},{y + s - bh:.1f} {x:.1f},{y + s:.1f} '
             f'{x + s:.1f},{y + s / 2:.1f}" fill="{shade(top, 0.55)}"/>'
             f'<polygon points="{x:.1f},{y - bh:.1f} {x + s:.1f},{y + s / 2 - bh:.1f} {x:.1f},{y + s - bh:.1f} '
-            f'{x - s:.1f},{y + s / 2 - bh:.1f}" fill="{top}"/>')
+            f'{x - s:.1f},{y + s / 2 - bh:.1f}" fill="{top}"/></g>')
     p += ["</g>", "</svg>"]
     return "\n".join(p) + "\n"
 

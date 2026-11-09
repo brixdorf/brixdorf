@@ -81,6 +81,6 @@ Hi, I'm Romit. I'm a computer science undergrad who likes to make and break stuf
 <p align="center">
 <a href="https://romitraj.dev"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/icons/dark/website.svg"><img src="assets/icons/light/website.svg" width="36" alt="Website" title="Website"></picture></a>
 <a href="https://blog.romitraj.dev"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/icons/dark/blog.svg"><img src="assets/icons/light/blog.svg" width="36" alt="Blog" title="Blog"></picture></a>
-<a href="https://www.linkedin.com/in/romitrajsahu/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/icons/dark/linkedin.svg"><img src="assets/icons/light/linkedin.svg" width="36" alt="LinkedIn" title="LinkedIn"></picture></a>
 <a href="https://x.com/brixdorf"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/icons/dark/x.svg"><img src="assets/icons/light/x.svg" width="36" alt="X" title="X"></picture></a>
+<a href="https://www.linkedin.com/in/romitrajsahu/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/icons/dark/linkedin.svg"><img src="assets/icons/light/linkedin.svg" width="36" alt="LinkedIn" title="LinkedIn"></picture></a>
 </p>
