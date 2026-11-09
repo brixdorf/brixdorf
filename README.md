@@ -6,7 +6,7 @@
 
 Hi, I'm Romit. I'm a computer science undergrad who likes to make and break stuff. I keep exploring new things that come up on the horizon.
 
-<img alt="Two terminal windows: ASCII art of a compass, and a neofetch-style card. Now: CS undergrad. Also: Wayfaring. Site: romitraj.dev. Stack: Java, Python, TypeScript, Bash; React, Next.js; Node.js, Express, Spring Boot. Highlights: Docker, Kubernetes, Terraform, AWS; writing at blog.romitraj.dev." src="assets/card.svg" width="100%">
+<img alt="Two terminal windows: ASCII art of a compass, and a neofetch-style card. Now: CS undergrad. Exploring: whatever's new on the horizon. Site: romitraj.dev. Stack: Java, Python, TypeScript, Bash; React, Next.js; Node.js, Express, Spring Boot. Highlights: Docker, Kubernetes, Terraform, AWS; writing at blog.romitraj.dev." src="assets/card.svg" width="100%">
 
 ### Tools I work with
 

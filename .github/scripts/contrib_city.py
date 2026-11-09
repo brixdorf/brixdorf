@@ -26,6 +26,7 @@ THEMES = {
                   green="#1a7f37", ground="#d0d7de",
                   ramp=["#ebedf0", "#e2d6fb", "#c3a6f5", "#9a6ee8", "#8250df"]),
 }
+LOOP, FADE_AT = 20, 18.5  # seconds: one build-hold-fade cycle, and when the fade starts
 LEVELS = {"NONE": 0, "FIRST_QUARTILE": 1, "SECOND_QUARTILE": 2, "THIRD_QUARTILE": 3, "FOURTH_QUARTILE": 4}
 
 QUERY = """query($login: String!) { user(login: $login) { contributionsCollection { contributionCalendar {
@@ -90,7 +91,7 @@ def render(theme, total, weeks):
         '<circle cx="60" cy="16.5" r="6" fill="#28c840"/>',
         f'<g font-family="{FONT}">',
         f'<text x="{W / 2}" y="21.5" fill="{c["muted"]}" font-size="13" text-anchor="middle">'
-        "romit@brixdorf: ~$ git log --since='1 year ago' | city</text>",
+        "romit@github: ~$ git log --since='1 year ago' | city</text>",
         f'<text x="38" y="60" font-size="13" fill="{c["green"]}">❯</text>',
         f'<text x="56" y="60" font-size="13" fill="{c["text"]}" font-weight="600">{total:,} contributions'
         f'<tspan fill="{c["muted"]}" font-weight="400"> in the last year</tspan></text>',
@@ -101,12 +102,19 @@ def render(theme, total, weeks):
         # square-root scale: quiet days still get a visible tower, busy days don't dwarf everything
         bh = 2 + (8 + 62 * math.sqrt(min(n, cap) / cap) if n else 0)
         x, y = ox + (w - r) * s, oy + (w + r) * s * 0.5
-        delay = 0.3 + (w - r + 6) * 0.035  # screen left -> right
+        # Build left to right, hold, fade out, repeat. Looping means someone who scrolls down
+        # later still sees the city being built (an <img> animation starts on page load).
+        a = 0.4 + (w - r + 6) * 0.075          # this tower starts rising (screen left -> right)
+        b = a + 0.8                            # ...and has landed
+        kt = f"0;{a / LOOP:.4f};{b / LOOP:.4f};{FADE_AT / LOOP:.4f};{(FADE_AT + 0.8) / LOOP:.4f};1"
+        ks = "0 0 1 1;0.2 0.8 0.2 1;0 0 1 1;0.4 0 1 1;0 0 1 1"
         p.append(
             f'<g opacity="0" transform="translate(0 -24)">'
-            f'<animate attributeName="opacity" from="0" to="1" dur="0.45s" begin="{delay:.3f}s" fill="freeze"/>'
-            f'<animateTransform attributeName="transform" type="translate" from="0 -24" to="0 0" dur="0.45s" '
-            f'begin="{delay:.3f}s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.2 0.8 0.2 1"/>'
+            f'<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="{kt}" dur="{LOOP}s" '
+            f'repeatCount="indefinite" calcMode="spline" keySplines="{ks}"/>'
+            f'<animateTransform attributeName="transform" type="translate" '
+            f'values="0 -24;0 -24;0 0;0 0;0 0;0 0" keyTimes="{kt}" dur="{LOOP}s" '
+            f'repeatCount="indefinite" calcMode="spline" keySplines="{ks}"/>'
             f'<polygon points="{x - s:.1f},{y + s / 2 - bh:.1f} {x:.1f},{y + s - bh:.1f} {x:.1f},{y + s:.1f} '
             f'{x - s:.1f},{y + s / 2:.1f}" fill="{shade(top, 0.7)}"/>'
             f'<polygon points="{x + s:.1f},{y + s / 2 - bh:.1f} {x:.1f},{y + s - bh:.1f} {x:.1f},{y + s:.1f} '
