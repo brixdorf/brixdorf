@@ -1,0 +1,34 @@
+# Redraws the 3D contribution city (assets/contrib-city-*.svg) from the last year of contributions.
+name: Contribution city
+
+on:
+  schedule:
+    - cron: "45 0 * * *" # every day at 00:45 UTC (06:15 in India), after the blog job
+  workflow_dispatch: # lets you run it by hand from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: readme-updates
+  cancel-in-progress: false
+
+jobs:
+  draw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Draw the city
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CONTRIB_TOKEN: ${{ secrets.CONTRIB_TOKEN }} # optional, see HOW-TO-PUBLISH.md
+        run: python3 .github/scripts/contrib_city.py ${{ github.repository_owner }} assets
+      - name: Commit if it changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/contrib-city-dark.svg assets/contrib-city-light.svg
+          git diff --cached --quiet && { echo "No change"; exit 0; }
+          git commit -m "Update contribution city"
+          git pull --rebase
+          git push

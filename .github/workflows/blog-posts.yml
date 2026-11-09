@@ -1,0 +1,28 @@
+# Keeps the "Latest writing" list in README.md up to date from the blog's RSS feed.
+name: Latest blog posts
+
+on:
+  schedule:
+    - cron: "30 0 * * *" # every day at 00:30 UTC (06:00 in India)
+  workflow_dispatch: # lets you run it by hand from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: readme-updates
+  cancel-in-progress: false
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: gautamkrishnar/blog-post-workflow@v1
+        with:
+          feed_list: "https://blog.romitraj.dev/rss.xml"
+          max_post_count: 3
+          template: "- [$title]($url) <sub>· $date</sub>$newline"
+          date_format: "UTC:mmm d, yyyy"
+          tag_post_pre_newline: true
+          commit_message: "Update latest blog posts"
