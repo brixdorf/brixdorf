@@ -1,0 +1,36 @@
+MIT License
+
+Copyright (c) 2026 Romit Raj Sahu
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+What the MIT license above does not cover
+
+The MIT license applies to the code in this repository only: the scripts in
+.github/scripts and the workflows in .github/workflows.
+
+- Content. The README text, the compass art and the other images made for
+  this profile are by Romit Raj Sahu, all rights reserved.
+- Icons. The skill icons in assets/icons come from ICONIC (MIT, see
+  assets/icons/LICENSE). The extra icons made for this profile use logos from
+  Devicon (MIT) and Simple Icons (CC0 1.0). Each logo belongs to its owner.
+- Card. assets/card.svg was rendered with the GitAscii engine
+  (https://github.com/Igorcbraz/GitAscii), which is licensed under GPL-3.0.
