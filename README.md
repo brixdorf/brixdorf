@@ -70,9 +70,9 @@ Hi, I'm Romit. I'm a computer science undergrad who likes to make and break stuf
 ### Latest writing
 
 <!-- BLOG-POST-LIST:START -->
-- [Server Hardening Guide](https://blog.romitraj.dev/blog/server-hardening-guide) <sub>· Sep 14, 2026</sub>
-- [Why you should own a server](https://blog.romitraj.dev/blog/why-you-should-own-a-server) <sub>· Jul 29, 2026</sub>
-- [Finishing off what I started](https://blog.romitraj.dev/blog/finishing-off-what-i-started) <sub>· Mar 30, 2026</sub>
+- [Server Hardening Guide](https://blog.romitraj.dev/blog/server-hardening-guide/) <sub>· Nov 14, 2026</sub>
+- [Why you should own a server](https://blog.romitraj.dev/blog/why-you-should-own-a-server/) <sub>· Jul 29, 2026</sub>
+- [Finishing off what I started](https://blog.romitraj.dev/blog/finishing-off-what-i-started/) <sub>· Mar 30, 2026</sub>
 
 <!-- BLOG-POST-LIST:END -->
 
